@@ -22,6 +22,21 @@ class GuppyUser(ndb.Model):
 class BasicInfo(ndb.Model):
     first_name = ndb.StringProperty(required="true")
     last_name = ndb.StringProperty(required="true")
+    birthday = ndb.StringProperty(required="true")
+    grade_level = ndb.StringProperty(required="true")
+    high_school_grad = ndb.StringProperty(required="true")
+    address = ndb.StringProperty(required="true")
+    city = ndb.StringProperty(required="true")
+    state = ndb.StringProperty(required="true")
+    zip_code = ndb.StringProperty(required="true")
+    email_address = ndb.StringProperty(required="true")
+    home_phone_number = ndb.StringProperty(required="true")
+    cell_phone_number = ndb.StringProperty(required="true")
+    religious_preference = ndb.StringProperty(required="true")
+    us_armed_forces_status = ndb.StringProperty(required="true")
+    race = ndb.StringProperty(required="true")
+    us_citizenship = ndb.StringProperty(required="true")
+
 
 
 
@@ -71,6 +86,24 @@ class BasicInfoHandler(webapp2.RequestHandler):
         self.response.write(template.render())
 
     def post(self):
+        basic_info = BasicInfo(
+            first_name=self.request.get('first_name'),
+            last_name=self.request.get('last_name'),
+            birthday=self.request.get('birthday'),
+            grade_level=self.request.get('grade_level'),
+            high_school_grad=self.request.get('graduation_year'),
+            address=self.request.get('address'),
+            city=self.request.get('city'),
+            state=self.request.get('states'),
+            zip_code= self.request.get('zipcode'),
+            email_address = self.request.get('email'),
+            home_phone_number = self.request.get('homephone'),
+            cell_phone_number =self.request.get('cellphone'),
+            religious_preference = self.request.get('religion'),
+            us_armed_forces_status = self.request.get('military'),
+            race = self.request.get('race'),
+            us_citizenship= self.request.get('citizenship'))
+        basic_info.put()
         self.redirect('/')
 
 class CompanyInfoHandler(webapp2.RequestHandler):
