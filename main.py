@@ -12,6 +12,7 @@ jinja_environment = jinja2.Environment(loader=
 
 class GuppyUser(ndb.Model):
     email_user_id = ndb.StringProperty(required="true")
+    isStudent = ndb.StringProperty(required="true")
     #
     #   totally add later
     # basic_info = ndb.KeyProperty()
@@ -31,29 +32,37 @@ class MainHandler(webapp2.RequestHandler):
             #if the user is not in the database after logging in.....
             if not user_identification.get():
                 #...logs you in and redirects you to basic info where you can create your instance in the database
-                self.redirect('/basic-info')
+                self.redirect('/student-or-scholar')
             #if the user is totally already in the database....
             else:
                 #changes the greeting on the homepage
-                logging.info("I totally worked. Be proud of me mom.")
                 greeting = ('<a href="%s">Sign out!</a>.' %
                     users.create_login_url('/'))
         else:
             greeting = ('<a href="%s">Sign in with your gmail account!</a>.' %
-                users.create_login_url('/basic-info'))
+                users.create_login_url('/'))
 
         template_vars = {'login' : greeting}
         template = jinja_environment.get_template('templates/homepage.html')
         self.response.write(template.render(template_vars))
 
+class StudentHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_environment.get_template('templates/student-or-scholar.html')
+        self.response.write(template.render())
+    def post(self):
+        userChoice = self.request.get('student-or-scholar-option')
+        self.redirect('/basic-info')
+        guppyuser = GuppyUser(email_user_id=users.get_current_user().user_id(), isStudent=userChoice)
+        guppyuser.put()
+
 class BasicInfoHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/basic-info.html')
         self.response.write(template.render())
+
     def post(self):
-        self.redirect('/scholar-list')
-        guppyuser = GuppyUser(email_user_id=users.get_current_user().user_id())
-        guppyuser.put()
+        self.redirect('/')
 
 class ScholarListHandler(webapp2.RequestHandler):
     def get(self):
@@ -64,6 +73,7 @@ class ScholarListHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
   ('/', MainHandler),
+  ('/student-or-scholar', StudentHandler),
   ('/basic-info', BasicInfoHandler),
   ('/scholar-list', ScholarListHandler),
 ], debug=True)
