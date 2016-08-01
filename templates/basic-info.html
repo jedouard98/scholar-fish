@@ -132,7 +132,7 @@
           <option value="UM">United States Minor Outlying Islands</option>
           <option value="VI">Virgin Islands</option>
         </select>
-        <p> Zip Code: <input type="text" name="name" value=""> </p>
+        <p> Zip Code: <input type="text" name="zipcode" > </p>
     </fieldset>
 
     <fieldset>
@@ -183,26 +183,22 @@
         <option value="previously-served">Previously Served</option>
         <option value="currently-dependent">Currently Dependent</option>
       </select>
-      <p> Race <input type="checkbox" name="american-indian" value=""> American Indian or Alaska Native
-               <input type="checkbox" name="asian" value=""> Asian
-               <input type="checkbox" name="black-african-american" value=""> Black or African American
-               <input type="checkbox" name="pacific-islander" value=""> Native Hawaiian or Other Pacfic Islander
-               <input type="checkbox" name="white" value=""> White
+      <p> Race <input type="checkbox" name="race" value="american-indian"> American Indian or Alaska Native
+               <input type="checkbox" name="race" value="asian"> Asian
+               <input type="checkbox" name="race" value="black-african-american"> Black or African American
+               <input type="checkbox" name="race" value="pacific-islander"> Native Hawaiian or Other Pacfic Islander
+               <input type="checkbox" name="race" value="white"> White
     </fieldset>
 
     <fieldset>
       <legend>Citzenship</legend>
-      <p> Citzenship Status: <select>
+      <p> Citzenship Status: <select name"citzenship">
         <option>U.S. Citizen or U.S. National</option>
         <option value="1">U.S. Dual Citizen</option>
         <option value="5">U.S. Permanent Resident</option>
         <option value="4">U.S. Refugee or Asylee</option>
         <option value="3">Other (Non-US)</option>
       </select>
-
-
-
-
     </fieldset>
     <button type="submit">Submit</button>
   </form>
