@@ -20,6 +20,9 @@ class GuppyUser(ndb.Model):
     #   totally add later
 
 class BasicInfo(ndb.Model):
+    first_name = ndb.StringProperty(required="true")
+    last_name = ndb.StringProperty(required="true")
+
 
 
 class MainHandler(webapp2.RequestHandler):
