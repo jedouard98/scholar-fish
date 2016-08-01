@@ -19,6 +19,9 @@ class GuppyUser(ndb.Model):
     # scholarship_organizations = ndb.KeyProperty()
     #   totally add later
 
+class BasicInfo(ndb.Model):
+
+
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
@@ -52,9 +55,12 @@ class StudentHandler(webapp2.RequestHandler):
         self.response.write(template.render())
     def post(self):
         userChoice = self.request.get('student-or-scholar-option')
-        self.redirect('/basic-info')
         guppyuser = GuppyUser(email_user_id=users.get_current_user().user_id(), isStudent=userChoice)
         guppyuser.put()
+        if userChoice:
+            self.redirect('/basic-info')
+        else:
+            self.redirect('/basic-info')
 
 class BasicInfoHandler(webapp2.RequestHandler):
     def get(self):
