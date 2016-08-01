@@ -60,14 +60,22 @@ class StudentHandler(webapp2.RequestHandler):
         userChoice = self.request.get('student-or-scholar-option')
         guppyuser = GuppyUser(email_user_id=users.get_current_user().user_id(), isStudent=userChoice)
         guppyuser.put()
-        if userChoice:
+        if userChoice == 'True':
             self.redirect('/basic-info')
         else:
-            self.redirect('/basic-info')
+            self.redirect('/companyinfo')
 
 class BasicInfoHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/basic-info.html')
+        self.response.write(template.render())
+
+    def post(self):
+        self.redirect('/')
+
+class CompanyInfoHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_environment.get_template('templates/companyinfo.html')
         self.response.write(template.render())
 
     def post(self):
@@ -84,5 +92,6 @@ app = webapp2.WSGIApplication([
   ('/', MainHandler),
   ('/student-or-scholar', StudentHandler),
   ('/basic-info', BasicInfoHandler),
+  ('/companyinfo', CompanyInfoHandler),
   ('/scholar-list', ScholarListHandler),
 ], debug=True)
