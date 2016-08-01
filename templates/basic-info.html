@@ -4,7 +4,6 @@
   <title>ScholarFish - A Place to Swim through the Application Process! </title>
 </head>
 <body>
-  Hi this is totally working
   <form method=post>
     <fieldset>
         <legend>Student Information</legend>
@@ -138,9 +137,9 @@
 
     <fieldset>
       <legend>Contact Information</legend>
-      <p>Email Address: <input type="text" name="email" value=""></p>
-      <p>Home Phone Number: <input type="text" name="homephone" value=""></p>
-      <p>Cell Phone Number: <input type="text" name="cellphone" value=""></p>
+      <p>Email Address: <input type="email" name="email" value=""></p>
+      <p>Home Phone Number: <input type="tel" name="homephone" value=""></p>
+      <p>Cell Phone Number: <input type="tel" name="cellphone" value=""></p>
       <p>Prefered Contact Method: <select class="contactmethod" name="contactmethod">
         <option value="cell">Cell Phone</option>
         <option value="home">Home Phone</option>
@@ -167,7 +166,7 @@
         <option value="Judaism">Judaism</option>
         <option value="Neo-Paganism">Neo-Paganism</option>
         <option value="Nonreligious">Nonreligious</option>
-        <option value="Rastafarianism">Rastafarianism</option>
+        <option value="Pastafarianism">Pastafarianism</option>
         <option value="Secular">Secular</option>
         <option value="Shinto">Shinto</option>
         <option value="Sikhism">Sikhism</option>
@@ -178,6 +177,17 @@
         <option value="primal-indigenous">primal-indigenous</option>
         <option value="Other">Other</option>
       </select>
+      <p> U.S. Armed forces status: <select name:"millitary">
+        <option value="none">None</option>
+        <option value="currently-serving">Currently Serving</option>
+        <option value="previously-served">Previously Served</option>
+        <option value="currently-dependent">Currently Dependent</option>
+      </select>
+      <p> Race <input type="checkbox" name="american-indian" value=""> American Indian or Alaska Native
+               <input type="checkbox" name="asian" value=""> Asian
+               <input type="checkbox" name="black-african-american" value=""> Black or African American
+               <input type="checkbox" name="pacific-islander" value=""> Native Hawaiian or Other Pacfic Islander
+               <input type="checkbox" name="white" value=""> White
     </fieldset>
     <button type="submit">Submit</button>
   </form>
