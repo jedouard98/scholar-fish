@@ -37,6 +37,15 @@ class CompanyInfo(ndb.Model):
     state = ndb.StringProperty(required="true")
     zip_code = ndb.StringProperty(required="true")
     student_time = ndb.StringProperty(required="true")
+    gpa = ndb.StringProperty(required="true")
+    diploma = ndb.StringProperty(required="true")
+    religion = ndb.StringProperty(required="true")
+    military = ndb.StringProperty(required="true")
+    citizenship = ndb.StringProperty(required="true")
+    community = ndb.StringProperty(required="true")
+    required_supplement = ndb.StringProperty(required="true")
+    optional_supplement = ndb.StringProperty(required="true")
+
 
 class GuppyUser(ndb.Model):
     email_user_id = ndb.StringProperty(required="true")
@@ -95,7 +104,6 @@ class BasicInfoHandler(webapp2.RequestHandler):
         basic_info = BasicInfo(
             first_name=self.request.get('first_name'),
             last_name=self.request.get('last_name'),
-
             birthday=self.request.get('birthday'),
             grade_level=self.request.get('grade_level'),
             high_school_grad=self.request.get('graduation_year'),
@@ -107,7 +115,7 @@ class BasicInfoHandler(webapp2.RequestHandler):
             home_phone_number = self.request.get('homephone'),
             cell_phone_number =self.request.get('cellphone'),
             religious_preference = self.request.get('religion'),
-            us_armed_forces_status = self.request.get('millitary'),
+            us_armed_forces_status = self.request.get('military'),
             race = self.request.get('race'),
             citizenship= self.request.get('citizenship'))
         info_key = basic_info.put()
@@ -121,11 +129,33 @@ class CompanyInfoHandler(webapp2.RequestHandler):
         self.response.write(template.render())
 
     def post(self):
-        self.redirect('/')
+        company_info = CompanyInfo(
+            name = self.request.get('company_name'),
+            grade_level = self.request.get('grade_level'),
+            due_date = self.request.get('due_date'),
+            adresss = self.request.get('address')
+            city = self.request.get('city')
+            state = self.request.get('states')
+            zip_code = self.request.get('zip_code')
+            student_time = self.request.get('student_status')
+            gpa = self.request.get('gpa')
+            diploma = self.request.get('diploma')
+            religion = self.request.get('religion')
+            military = self.request.get('military')
+            citizenship = self.request.get('citizenship')
+            community = self.request.get('community')
+            required_supplement = self.request.get('required_supplement')
+            optional_supplement = self.request.get('optional_supplement'))
+        self.redirect('/scholar-list')
 
 class ScholarListHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/scholar-list.html')
+        listOfScholarships = []
+        for scholarship in GuppyUser.query().filter(GuppyUser.isStudent == 'False'):
+            scholarshipName = scholarship.name
+            listOfScholarships.append(('<a href="/supplementPage">%s</a>.' % scholarshipName))
+            logging.info('List currently: ' + str(listOfScholarships))
         self.response.write(template.render())
 
 
