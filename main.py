@@ -109,7 +109,7 @@ class BasicInfoHandler(webapp2.RequestHandler):
             religious_preference = self.request.get('religion'),
             us_armed_forces_status = self.request.get('millitary'),
             race = self.request.get('race'),
-            citizenship= self.request.get('citizenship'))s
+            citizenship= self.request.get('citizenship'))
         info_key = basic_info.put()
 
 
