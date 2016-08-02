@@ -12,19 +12,19 @@
         <p>Birthday: <input type="date" name="birthday" value=""> </p>
         <p> Grade Level This Fall:  <select name="grade_level">
           <option value="">Grade Level</option>
-          <option value="9">High School Freshman</option>
-          <option value="10">High School Sophomore</option>
-          <option value="11">High School Junior</option>
-          <option value="12">High School Senior</option>
-          <option value="13">College Freshman</option>
-          <option value="14">College Sophomore</option>
-          <option value="15">College Junior</option>
-          <option value="16">College Senior</option>
-          <option value="17">Graduate School - Year 1</option>
-          <option value="18">Graduate Student - Year 2</option>
-          <option value="19">Graduate Student - Year 3</option>
-          <option value="20">Graduate Student - Year 4</option>
-          <option value="21">Graduate Student - Year 5</option></select> </p>
+          <option value="HS Freshman">High School Freshman</option>
+          <option value="HS Sophomore">High School Sophomore</option>
+          <option value="HS Junior">High School Junior</option>
+          <option value="HS Senior">High School Senior</option>
+          <option value="C Freshman">College Freshman</option>
+          <option value="C Sophomore">College Sophomore</option>
+          <option value="C Junior">College Junior</option>
+          <option value="C Senior">College Senior</option>
+          <option value="Grad 1">Graduate School - Year 1</option>
+          <option value="Grad 2">Graduate Student - Year 2</option>
+          <option value="Grad 3">Graduate Student - Year 3</option>
+          <option value="Grad 4">Graduate Student - Year 4</option>
+          <option value="Grad 5">Graduate Student - Year 5</option></select> </p>
         <p> High School Graduation Year: <select name="graduation_year"><option value="">School Year</option>
           <option value="2026">2026</option>
           <option value="2025">2025</option>
@@ -70,8 +70,8 @@
     <fieldset>
 
       <legend>Student Address</legend>
-        <p>Address: <input type="text" name="address" value=""> </p>
-        <p>City: <input type="text" name="city" value=""> </p>
+        <p>Address: <input type="text" name="address" value="{{address}}"> </p>
+        <p>City: <input type="text" name="city" value="{{city}}"> </p>
         <p> State: <select name="states">
           <option value="State">State</option>
         	<option value="AL">Alabama</option>
@@ -132,7 +132,7 @@
           <option value="UM">United States Minor Outlying Islands</option>
           <option value="VI">Virgin Islands</option>
         </select>
-        <p> Zip Code: <input type="text" name="zipcode" > </p>
+        <p> Zip Code: <input type="text" name="zipcode" value="zipcode"> </p>
     </fieldset>
 
     <fieldset>
@@ -187,17 +187,17 @@
                <input type="checkbox" name="race" value="asian"> Asian
                <input type="checkbox" name="race" value="black-african-american"> Black or African American
                <input type="checkbox" name="race" value="pacific-islander"> Native Hawaiian or Other Pacfic Islander
-               <input type="checkbox" name="race" value="white"> White
+               <input type="checkbox" name="race" value="white"> White </p>
     </fieldset>
 
     <fieldset>
       <legend>Citzenship</legend>
-      <p> Citzenship Status: <select name"citzenship">
-        <option>U.S. Citizen or U.S. National</option>
-        <option value="1">U.S. Dual Citizen</option>
-        <option value="5">U.S. Permanent Resident</option>
-        <option value="4">U.S. Refugee or Asylee</option>
-        <option value="3">Other (Non-US)</option>
+      <p> Citzenship Status: <select name"citizenship">
+        <option value="U.S. Citizen">U.S. Citizen or U.S. National</option>
+        <option value="U.S. Dual Citizen">U.S. Dual Citizen</option>
+        <option value="U.S. Permanent Resident">U.S. Permanent Resident</option>
+        <option value="U.S. Refugee or Asylee">U.S. Refugee or Asylee</option>
+        <option value="Other (Non-US)">Other (Non-US)</option>
       </select>
     </fieldset>
     <button type="submit">Submit</button>
