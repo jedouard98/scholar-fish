@@ -12,7 +12,7 @@ PLEASE ENTER YOUR SCHOLARSHSIP INFORMATION <br> <br>
 
         <p>Scholarship Name: <input type="text" name="company_name" value=""> </p>
 
-        <p> Who Can Apply?:  <select name="grade_level">
+        <p> Who Can Apply:  <select name="grade_level">
           <option value="">Grade Level</option>
           <option value="9">High School Freshman</option>
           <option value="10">High School Sophomore</option>
@@ -28,7 +28,7 @@ PLEASE ENTER YOUR SCHOLARSHSIP INFORMATION <br> <br>
           <option value="20">Graduate Student - Year 4</option>
           <option value="21">Graduate Student - Year 5</option></select> </p>
 
-        <p> When is your application due? <input type=date name="due_date">
+        <p> When is your application due <input type=date name="due_date">
 
     </fieldset>
 
@@ -101,14 +101,116 @@ PLEASE ENTER YOUR SCHOLARSHSIP INFORMATION <br> <br>
     </fieldset>
 
     <fieldset>
-      <legend>Application Requirments</legend>
+      <legend>Application Requirments</legend> <br><br>
+        <fieldset>
+          <legend> Academic Requirments </legend>
         <p>Full Time or Part Time Student?: <select name="student-status"> </p>
           <option value = "Full Time" > Full Time</option>
-          <option value = "Part Time" > Part Time</option>
+          <option value = "Part Time" > Part Time</option></select>
 
+
+        <p> Unweighted GPA Requirments:  <select name="gpa">
+          <option value="<1.0"> < 1.0 </option>
+          <option value="1.0"> 1.0 </option>
+          <option value="1.1"> 1.1 </option>
+          <option value="1.2"> 1.2 </option>
+          <option value="1.3"> 1.3 </option>
+          <option value="1.4"> 1.4 </option>
+          <option value="1.5"> 1.5 </option>
+          <option value="1.6"> 1.6 </option>
+          <option value="1.7"> 1.7 </option>
+          <option value="1.8"> 1.8 </option>
+          <option value="1.9"> 1.9 </option>
+          <option value="2.0"> 2.0 </option>
+          <option value="2.1"> 2.1 </option>
+          <option value="2.2"> 2.2 </option>
+          <option value="2.3"> 2.3 </option>
+          <option value="2.4"> 2.4 </option>
+          <option value="2.5"> 2.5 </option>
+          <option value="2.6"> 2.6 </option>
+          <option value="2.7"> 2.7 </option>
+          <option value="2.8"> 2.8 </option>
+          <option value="2.9"> 2.9 </option>
+          <option value="3.0"> 3.0 </option>
+          <option value="3.1"> 3.1 </option>
+          <option value="3.2"> 3.2 </option>
+          <option value="3.3"> 3.3 </option>
+          <option value="3.4"> 3.4 </option>
+          <option value="3.5"> 3.5 </option>
+          <option value="3.6"> 3.6 </option>
+          <option value="3.7"> 3.7 </option>
+          <option value="3.8"> 3.8 </option>
+          <option value="3.9"> 3.9 </option>
+          <option value="4.0"> 4.0 </option>
+    </select>
+    </p>
+
+      <p> Diploma Status:  <select name="diloma">
+        <option value="Obtained dipoloma"> Optained diploma </option>
+        <option value="Will obtain diploma school year "> Will obtain diploma by end of school year </option>
+        <option value="Anticipate diploma <5 years "> Will obtain diploma in < 5 years  </option>
+        <option value= "Do not have diploma"> Do not have diploma </option>
+      </select>
+
+    </fieldset> <br><br>
+
+      <fieldset>
+        <legend>Demographics</legend>
+
+        <p>Religous Preference: <select class="" name="religion">
+          <option value="">-- select one --</option>
+          <option value="African Traditional & Diasporic">African Traditional & Diasporic</option>
+          <option value="Agnostic">Agnostic</option>
+          <option value="Atheist">Atheist</option>
+          <option value="Baha'i">Baha'i</option>
+          <option value="Buddhism">Buddhism</option>
+          <option value="Cao Dai">Cao Dai</option>
+          <option value="Chinese traditional religion">Chinese traditional religion</option>
+          <option value="Christianity">Christianity</option>
+          <option value="Hinduism">Hinduism</option>
+          <option value="Islam">Islam</option>
+          <option value="Jainism">Jainism</option>
+          <option value="Juche">Juche</option>
+          <option value="Judaism">Judaism</option>
+          <option value="Neo-Paganism">Neo-Paganism</option>
+          <option value="Nonreligious">Nonreligious</option>
+          <option value="Pastafarianism">Pastafarianism</option>
+          <option value="Secular">Secular</option>
+          <option value="Shinto">Shinto</option>
+          <option value="Sikhism">Sikhism</option>
+          <option value="Spiritism">Spiritism</option>
+          <option value="Tenrikyo">Tenrikyo</option>
+          <option value="Unitarian-Universalism">Unitarian-Universalism</option>
+          <option value="Zoroastrianism">Zoroastrianism</option>
+          <option value="primal-indigenous">primal-indigenous</option>
+          <option value="Other">Other</option>
         </select>
 
+        <p> U.S. Armed forces status: <select name:"millitary">
+          <option value="none">None</option>
+          <option value="currently-serving">Currently Serving</option>
+          <option value="previously-served">Previously Served</option>
+          <option value="currently-dependent">Currently Dependent</option>
+        </select>
+        <p> Race <input type="checkbox" name="race" value="american-indian"> American Indian or Alaska Native
+                 <input type="checkbox" name="race" value="asian"> Asian
+                 <input type="checkbox" name="race" value="black-african-american"> Black or African American
+                 <input type="checkbox" name="race" value="pacific-islander"> Native Hawaiian or Other Pacfic Islander
+                 <input type="checkbox" name="race" value="white"> White
+      </fieldset> <br><br>
 
+      <fieldset>
+        <legend>Citzenship</legend>
+        <p> Citzenship Status: <select name"citzenship">
+          <option>U.S. Citizen or U.S. National</option>
+          <option value="1">U.S. Dual Citizen</option>
+          <option value="5">U.S. Permanent Resident</option>
+          <option value="4">U.S. Refugee or Asylee</option>
+          <option value="3">Other (Non-US)</option>
+        </select>
+      </fieldset>
+
+    </p>
 
     </fieldset>
 
