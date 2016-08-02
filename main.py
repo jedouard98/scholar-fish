@@ -26,7 +26,7 @@ class BasicInfo(ndb.Model):
     religious_preference = ndb.StringProperty(required="true")
     us_armed_forces_status = ndb.StringProperty(required="true")
     race = ndb.StringProperty(required="true")
-    us_citizenship = ndb.StringProperty(required="true")
+    citizenship = ndb.StringProperty(required="true")
 
 class CompanyInfo(ndb.Model):
     name = ndb.StringProperty(required="true")
