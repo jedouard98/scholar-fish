@@ -13,9 +13,8 @@ jinja_environment = jinja2.Environment(loader=
 class GuppyUser(ndb.Model):
     email_user_id = ndb.StringProperty(required="true")
     isStudent = ndb.StringProperty(required="true")
-    #
-    #   totally add later
-    # basic_info = ndb.KeyProperty()
+    basic_info = ndb.KeyProperty(BasicInfo)
+    company_info = ndb.KeyProperty(CompanyInfo)
     # scholarship_organizations = ndb.KeyProperty()
     #   totally add later
 
@@ -36,6 +35,19 @@ class BasicInfo(ndb.Model):
     us_armed_forces_status = ndb.StringProperty(required="true")
     race = ndb.StringProperty(required="true")
     us_citizenship = ndb.StringProperty(required="true")
+
+class CompanyInfo(ndb.Model):
+    name = ndb.StringProperty(required="true")
+    grade_level = ndb.StringProperty(required="true")
+    due_date = ndb.StringProperty(required="true")
+    adresss = ndb.StringProperty(required="true")
+    city = ndb.StringProperty(required="true")
+    state = ndb.StringProperty(required="true")
+    zip_code = ndb.StringProperty(required="true")
+    student_time = ndb.StringProperty(required="true")
+
+
+
 
 
 
@@ -104,6 +116,7 @@ class BasicInfoHandler(webapp2.RequestHandler):
             race = self.request.get('race'),
             us_citizenship= self.request.get('citizenship'))
         basic_info.put()
+
         self.redirect('/')
 
 class CompanyInfoHandler(webapp2.RequestHandler):
