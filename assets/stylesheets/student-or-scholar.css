@@ -1,0 +1,23 @@
+@import url(https://fonts.googleapis.com/css?family=Lora:400,400italic);
+
+.sign-in{
+  background-color: red;
+  position: absolute;
+  width: 330px ;
+  height: 210px;
+  padding: 10px;
+  z-index: 15;
+  top: 30%;
+  left: 50%;
+  margin: -100px 0 0 -150px;
+
+}
+.head-question{
+  font-size: 50px;
+  font-family: 'Lora', serif;
+
+}
+p{
+  font-size: 25px;
+  font-family: 'Lora', serif;
+}
