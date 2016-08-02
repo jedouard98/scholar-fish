@@ -26,7 +26,7 @@ class BasicInfo(ndb.Model):
     religious_preference = ndb.StringProperty(required="true")
     us_armed_forces_status = ndb.StringProperty(required="true")
     race = ndb.StringProperty(required="true")
-    us_citizenship = ndb.StringProperty(required="true")
+    citizenship = ndb.StringProperty(required="true")
 
 class CompanyInfo(ndb.Model):
     name = ndb.StringProperty(required="true")
@@ -107,9 +107,9 @@ class BasicInfoHandler(webapp2.RequestHandler):
             home_phone_number = self.request.get('homephone'),
             cell_phone_number =self.request.get('cellphone'),
             religious_preference = self.request.get('religion'),
-            us_armed_forces_status = self.request.get('military'),
+            us_armed_forces_status = self.request.get('millitary'),
             race = self.request.get('race'),
-            us_citizenship= self.request.get('citizenship'))
+            citizenship= self.request.get('citizenship'))s
         info_key = basic_info.put()
 
 
