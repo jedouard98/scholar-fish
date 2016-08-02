@@ -29,14 +29,21 @@ class BasicInfo(ndb.Model):
     citizenship = ndb.StringProperty(required="true")
 
 class CompanyInfo(ndb.Model):
-    name = ndb.StringProperty(required="true")
+    comapny_name = ndb.StringProperty(required="true")
     grade_level = ndb.StringProperty(required="true")
     due_date = ndb.StringProperty(required="true")
-    adresss = ndb.StringProperty(required="true")
+    gpa = ndb.StringProperty(required="true")
+    address = ndb.StringProperty(required="true")
     city = ndb.StringProperty(required="true")
     state = ndb.StringProperty(required="true")
     zip_code = ndb.StringProperty(required="true")
-    student_time = ndb.StringProperty(required="true")
+    student_status = ndb.StringProperty(required="true")
+    religious_preference = ndb.StringProperty(required="true")
+    us_armed_forces_status = ndb.StringProperty(required="true")
+    race = ndb.StringProperty(required="true")
+    citizenship = ndb.StringProperty(required="true")
+    diploma = ndb.StringProperty(required="true")
+    student_status = ndb.StringProperty(required="true")
 
 class GuppyUser(ndb.Model):
     email_user_id = ndb.StringProperty(required="true")
@@ -107,7 +114,7 @@ class BasicInfoHandler(webapp2.RequestHandler):
             home_phone_number = self.request.get('homephone'),
             cell_phone_number =self.request.get('cellphone'),
             religious_preference = self.request.get('religion'),
-            us_armed_forces_status = self.request.get('millitary'),
+            us_armed_forces_status = self.request.get('military'),
             race = self.request.get('race'),
             citizenship= self.request.get('citizenship'))
         info_key = basic_info.put()
@@ -121,7 +128,32 @@ class CompanyInfoHandler(webapp2.RequestHandler):
         self.response.write(template.render())
 
     def post(self):
+        company_info = CompanyInfo(
+            comapny_name=self.request.get('comapny_name'),
+            grade_level=self.request.get('grade_level'),
+            due_date=self.request.get('due_date'),
+            address=self.request.get('address'),
+            city=self.request.get('city'),
+            state=self.request.get('states'),
+            zip_code= self.request.get('zipcode'),
+            student_status = self.request.get('student_status'),
+            gpa= self.request.get('gpa'),
+            diploma =self.request.get('diploma'),
+            religious_preference = self.request.get('religion'),
+            us_armed_forces_status = self.request.get('millitary'),
+            race = self.request.get('race'),
+            citizenship= self.request.get('citizenship'))
+        info_key = company_info.put()
         self.redirect('/')
+
+
+
+
+
+
+
+
+
 
 class ScholarListHandler(webapp2.RequestHandler):
     def get(self):
