@@ -5,8 +5,6 @@ from google.appengine.api import users
 from google.appengine.ext import ndb
 import webapp2
 
-
-
 jinja_environment = jinja2.Environment(loader=
     jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
@@ -29,23 +27,21 @@ class BasicInfo(ndb.Model):
     citizenship = ndb.StringProperty(required="true")
 
 class CompanyInfo(ndb.Model):
-    name = ndb.StringProperty(required="true")
+    comapny_name = ndb.StringProperty(required="true")
     grade_level = ndb.StringProperty(required="true")
     due_date = ndb.StringProperty(required="true")
-    adresss = ndb.StringProperty(required="true")
+    gpa = ndb.StringProperty(required="true")
+    address = ndb.StringProperty(required="true")
     city = ndb.StringProperty(required="true")
     state = ndb.StringProperty(required="true")
     zip_code = ndb.StringProperty(required="true")
-    student_time = ndb.StringProperty(required="true")
-    gpa = ndb.StringProperty(required="true")
-    diploma = ndb.StringProperty(required="true")
-    religion = ndb.StringProperty(required="true")
-    military = ndb.StringProperty(required="true")
+    student_status = ndb.StringProperty(required="true")
+    religious_preference = ndb.StringProperty(required="true")
+    us_armed_forces_status = ndb.StringProperty(required="true")
+    race = ndb.StringProperty(required="true")
     citizenship = ndb.StringProperty(required="true")
-    community = ndb.StringProperty(required="true")
-    required_supplement = ndb.StringProperty(required="true")
-    optional_supplement = ndb.StringProperty(required="true")
-
+    diploma = ndb.StringProperty(required="true")
+    student_status = ndb.StringProperty(required="true")
 
 class GuppyUser(ndb.Model):
     email_user_id = ndb.StringProperty(required="true")
@@ -104,6 +100,7 @@ class BasicInfoHandler(webapp2.RequestHandler):
         basic_info = BasicInfo(
             first_name=self.request.get('first_name'),
             last_name=self.request.get('last_name'),
+
             birthday=self.request.get('birthday'),
             grade_level=self.request.get('grade_level'),
             high_school_grad=self.request.get('graduation_year'),
@@ -130,35 +127,27 @@ class CompanyInfoHandler(webapp2.RequestHandler):
 
     def post(self):
         company_info = CompanyInfo(
-            name = self.request.get('company_name'),
-            grade_level = self.request.get('grade_level'),
-            due_date = self.request.get('due_date'),
-            adresss = self.request.get('address')
-            city = self.request.get('city')
-            state = self.request.get('states')
-            zip_code = self.request.get('zip_code')
-            student_time = self.request.get('student_status')
-            gpa = self.request.get('gpa')
-            diploma = self.request.get('diploma')
-            religion = self.request.get('religion')
-            military = self.request.get('military')
-            citizenship = self.request.get('citizenship')
-            community = self.request.get('community')
-            required_supplement = self.request.get('required_supplement')
-            optional_supplement = self.request.get('optional_supplement'))
-        self.redirect('/scholar-list')
+            comapny_name=self.request.get('comapny_name'),
+            grade_level=self.request.get('grade_level'),
+            due_date=self.request.get('due_date'),
+            address=self.request.get('address'),
+            city=self.request.get('city'),
+            state=self.request.get('states'),
+            zip_code= self.request.get('zipcode'),
+            student_status = self.request.get('student_status'),
+            gpa= self.request.get('gpa'),
+            diploma =self.request.get('diploma'),
+            religious_preference = self.request.get('religion'),
+            us_armed_forces_status = self.request.get('millitary'),
+            race = self.request.get('race'),
+            citizenship= self.request.get('citizenship'))
+        info_key = company_info.put()
+        self.redirect('/')
 
 class ScholarListHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/scholar-list.html')
-        listOfScholarships = []
-        for scholarship in GuppyUser.query().filter(GuppyUser.isStudent == 'False'):
-            scholarshipName = scholarship.name
-            listOfScholarships.append(('<a href="/supplementPage">%s</a>.' % scholarshipName))
-            logging.info('List currently: ' + str(listOfScholarships))
         self.response.write(template.render())
-
-
 
 app = webapp2.WSGIApplication([
   ('/', MainHandler),
