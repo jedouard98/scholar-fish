@@ -10,14 +10,6 @@ import webapp2
 jinja_environment = jinja2.Environment(loader=
     jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
-class GuppyUser(ndb.Model):
-    email_user_id = ndb.StringProperty(required="true")
-    isStudent = ndb.StringProperty(required="true")
-    basic_info = ndb.KeyProperty(BasicInfo)
-    company_info = ndb.KeyProperty(CompanyInfo)
-    # scholarship_organizations = ndb.KeyProperty()
-    #   totally add later
-
 class BasicInfo(ndb.Model):
     first_name = ndb.StringProperty(required="true")
     last_name = ndb.StringProperty(required="true")
@@ -46,11 +38,13 @@ class CompanyInfo(ndb.Model):
     zip_code = ndb.StringProperty(required="true")
     student_time = ndb.StringProperty(required="true")
 
-
-
-
-
-
+class GuppyUser(ndb.Model):
+    email_user_id = ndb.StringProperty(required="true")
+    isStudent = ndb.StringProperty(required="true")
+    basic_info = ndb.KeyProperty(BasicInfo)
+    company_info = ndb.KeyProperty(CompanyInfo)
+    # scholarship_organizations = ndb.KeyProperty()
+    #   totally add later
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -101,6 +95,7 @@ class BasicInfoHandler(webapp2.RequestHandler):
         basic_info = BasicInfo(
             first_name=self.request.get('first_name'),
             last_name=self.request.get('last_name'),
+
             birthday=self.request.get('birthday'),
             grade_level=self.request.get('grade_level'),
             high_school_grad=self.request.get('graduation_year'),
@@ -115,7 +110,8 @@ class BasicInfoHandler(webapp2.RequestHandler):
             us_armed_forces_status = self.request.get('military'),
             race = self.request.get('race'),
             us_citizenship= self.request.get('citizenship'))
-        basic_info.put()
+        info_key = basic_info.put()
+
 
         self.redirect('/')
 
