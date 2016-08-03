@@ -116,8 +116,12 @@ class BasicInfoHandler(webapp2.RequestHandler):
             race = self.request.get('race'),
             citizenship= self.request.get('citizenship'))
         info_key = basic_info.put()
-
-
+        user = users.get_current_user()
+        user_id = user.user_id()
+        currentUser = GuppyUser.query().filter(GuppyUser.email_user_id == user_id).fetch()
+        currentUser[0].basic_info = info_key
+        logging.info(str(currentUser))
+        logging.info(str(info_key))
         self.redirect('/')
 
 class CompanyInfoHandler(webapp2.RequestHandler):
