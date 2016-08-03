@@ -4,9 +4,9 @@
   <title>ScholarFish - A Place to Swim through the Application Process! </title>
 </head>
 <body>
-PLEASE ENTER YOUR SCHOLARSHSIP INFORMATION <br> <br>
+<h1>PLEASE ENTER YOUR SCHOLARSHIP INFORMATION</h1> <br> <br>
   <form method=post>
-    <fieldset>
+    <fieldset class=field_set>
 
         <legend>Scholarship Information</legend>
 
@@ -32,7 +32,7 @@ PLEASE ENTER YOUR SCHOLARSHSIP INFORMATION <br> <br>
 
     </fieldset>
 
-    <fieldset>
+    <fieldset class=field_set>
 
       <legend>Company Address</legend>
         <p>Address: <input type="text" name="address" value=""> </p>
@@ -100,9 +100,9 @@ PLEASE ENTER YOUR SCHOLARSHSIP INFORMATION <br> <br>
         <p> Zip Code: <input type="text" name="zip_code" value=""> </p>
     </fieldset>
 
-    <fieldset>
+    <fieldset class=field_set>
       <legend>Application Requirments</legend> <br><br>
-        <fieldset>
+        <fieldset id=other_field_set>
           <legend> Academic Requirments </legend>
         <p>Full Time or Part Time Student?: <select name="student-status"> </p>
           <option value = "Full Time" > Full Time</option>
@@ -154,7 +154,7 @@ PLEASE ENTER YOUR SCHOLARSHSIP INFORMATION <br> <br>
 
     </fieldset> <br><br>
 
-      <fieldset>
+      <fieldset id=other_field_set>
         <legend>Demographics</legend>
 
         <p>Religous Preference: <select class="" name="religion">
@@ -192,14 +192,14 @@ PLEASE ENTER YOUR SCHOLARSHSIP INFORMATION <br> <br>
           <option value="previously-served">Previously Served</option>
           <option value="currently-dependent">Currently Dependent</option>
         </select>
-        <p> Race <input type="checkbox" name="race" value="american-indian"> American Indian or Alaska Native
-                 <input type="checkbox" name="race" value="asian"> Asian
-                 <input type="checkbox" name="race" value="black-african-american"> Black or African American
-                 <input type="checkbox" name="race" value="pacific-islander"> Native Hawaiian or Other Pacfic Islander
-                 <input type="checkbox" name="race" value="white"> White
+        <p> Race <br> <input type="checkbox" name="race" value="american-indian"> American Indian or Alaska Native <br>
+                 <input type="checkbox" name="race" value="asian"> Asian <br>
+                 <input type="checkbox" name="race" value="black-african-american"> Black or African American <br>
+                 <input type="checkbox" name="race" value="pacific-islander"> Native Hawaiian or Other Pacfic Islander <br>
+                 <input type="checkbox" name="race" value="white"> White <br>
       </fieldset> <br><br>
 
-      <fieldset>
+      <fieldset id=other_field_set>
         <legend>Citzenship</legend>
         <p> Citizenship Status: <select name:"citizenship">
           <option>U.S. Citizen or U.S. National</option>
@@ -210,26 +210,20 @@ PLEASE ENTER YOUR SCHOLARSHSIP INFORMATION <br> <br>
         </select>
       </fieldset> <br><br>
 
-      <fieldset>
-<<<<<<< HEAD
-=======
+      <fieldset id=other_field_set>
         <legend> Community Involvement </legend>
-        <p>Input Your Community Standards for Applicants <select name:"community"</p>
+        <p>Input Your Community Standards for Applicants <name:"community"</p> <br>
           <textarea > </textarea>
-        </select>
       </fieldset> <br><br>
 
-      <fieldset>
->>>>>>> 97c3c341b88aeda2bfcdb2330b4bcf52324d125f
+      <fieldset id =other_field_set>
         <legend> Suppplemental Information </legend>
 
-          <p>Input Your <strong>Required</strong> Supplemental Information <select name: "required_supplement"</p>
+          <p>Input Your <strong>Required</strong> Supplemental Information <name: "required_supplement"</p> <br>
             <textarea> </textarea>
-          </select>
 
-          <p>Input Your <strong>Optional</strong> Supplemental Information <select name: "optional_supplement"</p>
+          <p>Input Your <strong>Optional</strong> Supplemental Information <name: "optional_supplement"</p> <br>
             <textarea > </textarea>
-          </select>
 
 
 
@@ -242,5 +236,37 @@ PLEASE ENTER YOUR SCHOLARSHSIP INFORMATION <br> <br>
 
     <button type="submit">Submit</button>
   </form>
+
+<style>
+@import url(https://fonts.googleapis.com/css?family=Poiret+One);
+.field_set{
+    font-family: 'Poiret One', serif;
+    border-color:teal;
+    border-width: 7px;
+    border-style: solid;
+}
+
+#other_field_set{
+  border-color: #009999;
+  border-style: dotted;
+  border-width: 5px;
+  }
+
+legend {
+  font-family: 'Poiret One',serif;
+  font-size: 25px;
+  font-weight: bold;
+  color: teal;
+
+}
+
+h1{
+  text-align: center;
+  font-family: 'Poiret One', serif;
+  font-size: 50px;
+  color: #006666
+}
+
+</style>
 </body>
 </html>
