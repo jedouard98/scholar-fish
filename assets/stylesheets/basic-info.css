@@ -1,6 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Poiret+One);
 
 legend{
+  color: teal;
   font-family: 'Poiret One', serif;
   font-size: 25px;
   font-weight: bold;
