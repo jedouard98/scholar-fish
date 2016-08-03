@@ -1,7 +1,21 @@
 @import url(https://fonts.googleapis.com/css?family=Lora:400,400italic);
 
+.header{
+  color : white;
+  background-color: teal;
+  text-align: left;
+  font-family:'Lora', serif;;
+  height: 90px;
+  font-size: 55px;
+  font-weight: 10px;
+  opacity: 0.5;
+  filter: alpha(opacity=25);
+}
 .sign-in{
-  background-color: red;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 5px;
+  border-color: teal;
   position: absolute;
   width: 330px ;
   height: 210px;
