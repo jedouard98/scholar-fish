@@ -71,7 +71,7 @@ class MainHandler(webapp2.RequestHandler):
                 greeting = ('<a href="%s">Sign out!</a>.' %
                     users.create_login_url('/'))
         else:
-            greeting = ('<a href="%s">Sign in with your gmail account!</a>.' %
+            greeting = ('<a id="login" href="%s">Sign in with your gmail account!</a>.' %
                 users.create_login_url('/'))
 
         template_vars = {'login' : greeting}
