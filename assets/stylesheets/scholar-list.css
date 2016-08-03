@@ -1,17 +1,17 @@
-@import url(https://fonts.googleapis.com/css?family=Lora:400,400italic);
+@import url(https://fonts.googleapis.com/css?family=Poiret+One);
 a:visited{
   color: teal;
-  font-family:'Lora', serif;;
+  font-family:'Poiret One', serif;
 }
 a{
   color: teal;
-  font-family:'Lora', serif;;
+  font-family:'Poiret One', serif;
 }
 .header{
   color : white;
   background-color: teal;
   text-align: left;
-  font-family:'Lora', serif;
+  font-family:'Poiret One', serif;
   height: 90px;
   font-size: 55px;
   font-weight: 10px;
@@ -20,10 +20,12 @@ a{
 }
 
 p{
+text-align: center;
 border-style: solid;
 border-width: thin;
+border
 border-color: teal;
 margin-top: 20px;
 margin-bottom: 20px;
-padding: inherit;
+padding: 10px;
 }
