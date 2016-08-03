@@ -23,3 +23,6 @@ fieldset{
   border-width: 7px;
   border-style: solid;
 }
+input{
+    font-family: 'Poiret One', serif;
+}
