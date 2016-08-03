@@ -29,6 +29,7 @@ class BasicInfo(ndb.Model):
 
 class CompanyInfo(ndb.Model):
     company_name = ndb.StringProperty(required="true")
+    email_address = ndb.StringProperty(required="true")
     grade_level = ndb.StringProperty(required="true")
     due_date = ndb.StringProperty(required="true")
     gpa = ndb.StringProperty(required="true")
@@ -144,6 +145,7 @@ class CompanyInfoHandler(webapp2.RequestHandler):
     def post(self):
         company_info = CompanyInfo(
             company_name=self.request.get('company_name'),
+            email_address=self.request.get('email_address'),
             grade_level=self.request.get('grade_level'),
             due_date=self.request.get('due_date'),
             address=self.request.get('address'),
@@ -196,9 +198,14 @@ class SupplementHandler(webapp2.RequestHandler):
         template_list = {"listOfSupplements" : listOfSupplements}
         self.response.write(template.render(template_list))
     def post(self):
+        user = users.get_current_user()
+        user_id = user.user_id()
+        currentUser = GuppyUser.query().filter(GuppyUser.email_user_id == user_id).fetch()
+
         sender_address = (
             'Support <team@scholar-fish.appspotmail.com>')
-        subject = 'Confirm your registration'
+        subject = '{}\'s Application!'.format(currentUser[0].first_name)
+        
         body = """Thank you for creating an account!
 Please confirm your email address by clicking on the link below:
 
