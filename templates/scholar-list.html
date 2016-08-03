@@ -1,8 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href="/assets/stylesheets/scholar-list.css">
   <title>ScholarFish - A Place to Swim through the Application Process! </title>
 </head>
 <body>
+  <div class ="header">
+    Scholar-Fish!
+  </div>
+
+  {% for line in listOfScholarships %}
+  <p><a href="/supplement-info?name={{line}}">{{line}}</a></p>
+  {% endfor %}
 </body>
 </html>

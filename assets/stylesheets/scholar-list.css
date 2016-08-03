@@ -1,0 +1,29 @@
+@import url(https://fonts.googleapis.com/css?family=Lora:400,400italic);
+a:visited{
+  color: teal;
+  font-family:'Lora', serif;;
+}
+a{
+  color: teal;
+  font-family:'Lora', serif;;
+}
+.header{
+  color : white;
+  background-color: teal;
+  text-align: left;
+  font-family:'Lora', serif;
+  height: 90px;
+  font-size: 55px;
+  font-weight: 10px;
+  opacity: 0.5;
+  filter: alpha(opacity=25);
+}
+
+p{
+border-style: solid;
+border-width: thin;
+border-color: teal;
+margin-top: 20px;
+margin-bottom: 20px;
+padding: inherit;
+}

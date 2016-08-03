@@ -27,7 +27,7 @@ class BasicInfo(ndb.Model):
     citizenship = ndb.StringProperty(required="true")
 
 class CompanyInfo(ndb.Model):
-    comapny_name = ndb.StringProperty(required="true")
+    company_name = ndb.StringProperty(required="true")
     grade_level = ndb.StringProperty(required="true")
     due_date = ndb.StringProperty(required="true")
     gpa = ndb.StringProperty(required="true")
@@ -130,7 +130,7 @@ class BasicInfoHandler(webapp2.RequestHandler):
         currentUser[0].setbasicInfo(info_key).put()
         logging.info(str(currentUser))
         logging.info(str(info_key))
-        self.redirect('/')
+        self.redirect('/scholar-list')
 
 class CompanyInfoHandler(webapp2.RequestHandler):
     def get(self):
@@ -139,7 +139,7 @@ class CompanyInfoHandler(webapp2.RequestHandler):
 
     def post(self):
         company_info = CompanyInfo(
-            comapny_name=self.request.get('company_name'),
+            company_name=self.request.get('company_name'),
             grade_level=self.request.get('grade_level'),
             due_date=self.request.get('due_date'),
             address=self.request.get('address'),
@@ -163,7 +163,19 @@ class CompanyInfoHandler(webapp2.RequestHandler):
 class ScholarListHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/scholar-list.html')
-        self.response.write(template.render())
+        listOfScholarships = []
+        listOfScholarshipsHTML = ""
+        company_data = CompanyInfo.query().fetch()
+        for scholarship in company_data:
+            name = scholarship.company_name
+            logging.info(name)
+
+            listOfScholarships.append(name)
+
+            logging.info(str(listOfScholarships))
+
+        template_list = {"listOfScholarships" : listOfScholarships}
+        self.response.write(template.render(template_list))
 
 app = webapp2.WSGIApplication([
   ('/', MainHandler),
