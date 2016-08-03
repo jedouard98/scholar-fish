@@ -205,11 +205,16 @@ class SupplementHandler(webapp2.RequestHandler):
         sender_address = (
             'Support <team@scholar-fish.appspotmail.com>')
         subject = '{}\'s Application!'.format(currentUser[0].first_name)
-        
-        body = """Thank you for creating an account!
-Please confirm your email address by clicking on the link below:
 
-"""
+        body = """Name: {}
+        Age: {}
+        asdasd
+        asda
+        sda
+        sd
+
+""".format(currentUser[0].first_name)
+
         name = self.request.get('name')
         company = CompanyInfo.query().filter(CompanyInfo.company_name == name).fetch()[0]
         receiver_address = company.email_address
