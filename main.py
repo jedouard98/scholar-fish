@@ -42,6 +42,9 @@ class CompanyInfo(ndb.Model):
     citizenship = ndb.StringProperty(required="true")
     diploma = ndb.StringProperty(required="true")
     student_status = ndb.StringProperty(required="true")
+    required_supplement = ndb.StringProperty(required="true")
+    optional_supplement = ndb.StringProperty(required="true")
+
 
 class GuppyUser(ndb.Model):
     email_user_id = ndb.StringProperty(required="true")
@@ -152,7 +155,9 @@ class CompanyInfoHandler(webapp2.RequestHandler):
             religious_preference = self.request.get('religion'),
             us_armed_forces_status = self.request.get('millitary'),
             race = self.request.get('race'),
-            citizenship= self.request.get('citizenship'))
+            citizenship= self.request.get('citizenship'),
+            required_supplement = self.request.get('required_supplement'),
+            optional_supplement = self.request.get('optional_supplement'))
         info_key = company_info.put()
         user = users.get_current_user()
         user_id = user.user_id()
@@ -168,14 +173,32 @@ class ScholarListHandler(webapp2.RequestHandler):
         company_data = CompanyInfo.query().fetch()
         for scholarship in company_data:
             name = scholarship.company_name
-            logging.info(name)
-
             listOfScholarships.append(name)
-
-            logging.info(str(listOfScholarships))
-
         template_list = {"listOfScholarships" : listOfScholarships}
         self.response.write(template.render(template_list))
+
+class SupplementHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_environment.get_template('templates/supplement-info.html')
+        name = self.request.get('name')
+        company = CompanyInfo.query().filter(CompanyInfo.company_name == name).fetch()[0]
+        stringOfQuestions = company.required_supplement
+        listOfQuestions = stringOfQuestions.split("?")
+        listOfSupplements = [];
+        for sentence in listOfQuestions:
+            if sentence != "":
+                newSentence = sentence + "?"
+                logging.info(newSentence)
+                logging.info(sentence)
+                logging.info(stringOfQuestions)
+                listOfSupplements.append(newSentence)
+        template_list = {"listOfSupplements" : listOfSupplements}
+        self.response.write(template.render(template_list))
+
+
+
+
+
 
 app = webapp2.WSGIApplication([
   ('/', MainHandler),
@@ -183,4 +206,5 @@ app = webapp2.WSGIApplication([
   ('/basic-info', BasicInfoHandler),
   ('/companyinfo', CompanyInfoHandler),
   ('/scholar-list', ScholarListHandler),
+  ('/supplement-info', SupplementHandler),
 ], debug=True)
