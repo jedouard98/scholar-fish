@@ -4,6 +4,7 @@ import logging
 from google.appengine.api import users
 from google.appengine.ext import ndb
 import webapp2
+from google.appengine.api import mail
 
 jinja_environment = jinja2.Environment(loader=
     jinja2.FileSystemLoader(os.path.dirname(__file__)))
@@ -194,6 +195,21 @@ class SupplementHandler(webapp2.RequestHandler):
                 listOfSupplements.append(newSentence)
         template_list = {"listOfSupplements" : listOfSupplements}
         self.response.write(template.render(template_list))
+    def post(self):
+        sender_address = (
+            'Support <team@scholar-fish.appspotmail.com>')
+        subject = 'Confirm your registration'
+        body = """Thank you for creating an account!
+Please confirm your email address by clicking on the link below:
+
+"""
+        name = self.request.get('name')
+        company = CompanyInfo.query().filter(CompanyInfo.company_name == name).fetch()[0]
+        receiver_address = company.email_address
+        mail.send_mail(sender_address, receiver_address, subject, body)
+
+
+# Send the message via our own SMTP
 
 
 
