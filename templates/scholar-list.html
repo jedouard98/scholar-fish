@@ -4,6 +4,8 @@
   <title>ScholarFish - A Place to Swim through the Application Process! </title>
 </head>
 <body>
-  {{list}}
+  {% for line in listOfScholarships %}
+  <p><a href="/supplement-info?name={{line}}">{{line}}</a></p>
+  {% endfor %}
 </body>
 </html>

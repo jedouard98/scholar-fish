@@ -174,13 +174,7 @@ class ScholarListHandler(webapp2.RequestHandler):
 
             logging.info(str(listOfScholarships))
 
-        for line in listOfScholarships:
-            newLine = '<p><a href="/supplement-info">' + str(line) + '</a></p>'
-            listOfScholarshipsHTML += newLine
-
-            logging.info(listOfScholarshipsHTML)
-
-        template_list = {"list" : listOfScholarshipsHTML}
+        template_list = {"listOfScholarships" : listOfScholarships}
         self.response.write(template.render(template_list))
 
 app = webapp2.WSGIApplication([
