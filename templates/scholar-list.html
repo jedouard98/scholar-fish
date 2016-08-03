@@ -5,10 +5,6 @@
   <title>ScholarFish - A Place to Swim through the Application Process! </title>
 </head>
 <body>
-  <div class ="header">
-    Scholar-Fish!<div class=login>{{login}}</div>
-  </div>
-
   {% for line in listOfScholarships %}
   <p><a href="/supplement-info?name={{line}}">{{line}}</a></p>
   {% endfor %}
