@@ -48,6 +48,14 @@ class GuppyUser(ndb.Model):
     isStudent = ndb.StringProperty(required="true")
     basic_info = ndb.KeyProperty(BasicInfo)
     company_info = ndb.KeyProperty(CompanyInfo)
+
+    def setbasicInfo(self, info_key):
+        self.basic_info = info_key
+        return self
+
+    def setCompanyInfo(self, info_key):
+        self.company_info = info_key
+        return self
     # scholarship_organizations = ndb.KeyProperty()
     #   totally add later
 
@@ -119,7 +127,7 @@ class BasicInfoHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         user_id = user.user_id()
         currentUser = GuppyUser.query().filter(GuppyUser.email_user_id == user_id).fetch()
-        currentUser[0].basic_info = info_key
+        currentUser[0].setbasicInfo(info_key).put()
         logging.info(str(currentUser))
         logging.info(str(info_key))
         self.redirect('/')
@@ -131,7 +139,7 @@ class CompanyInfoHandler(webapp2.RequestHandler):
 
     def post(self):
         company_info = CompanyInfo(
-            comapny_name=self.request.get('comapny_name'),
+            comapny_name=self.request.get('company_name'),
             grade_level=self.request.get('grade_level'),
             due_date=self.request.get('due_date'),
             address=self.request.get('address'),
@@ -146,6 +154,10 @@ class CompanyInfoHandler(webapp2.RequestHandler):
             race = self.request.get('race'),
             citizenship= self.request.get('citizenship'))
         info_key = company_info.put()
+        user = users.get_current_user()
+        user_id = user.user_id()
+        currentUser = GuppyUser.query().filter(GuppyUser.email_user_id == user_id).fetch()
+        currentUser[0].setCompanyInfo(info_key).put()
         self.redirect('/')
 
 class ScholarListHandler(webapp2.RequestHandler):
