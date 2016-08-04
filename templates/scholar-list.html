@@ -10,7 +10,7 @@
   </div>
 
   {% for line in listOfScholarships %}
-  <p><a href="/supplement-info?name={{line}}">{{line}}</a></p>
+  <a href="/supplement-info?name={{line}}"><div><p>{{line}}</p></div></a>
   {% endfor %}
 </body>
 </html>
