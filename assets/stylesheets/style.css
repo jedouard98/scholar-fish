@@ -1,7 +1,7 @@
 button{
-  position: relative;
-  left: 1235px;
-  top:  10px;
+  position: absolute;
+  left: 86%;
+  top:  10%;
 }
 
 body{
