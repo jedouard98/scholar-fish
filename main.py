@@ -72,10 +72,10 @@ class MainHandler(webapp2.RequestHandler):
             user_id = user.user_id()
 
             #looks for user in database
-            user_identification = GuppyUser.query().filter(GuppyUser.email_user_id == user_id)
+            user_identification = GuppyUser.query().filter(GuppyUser.email_user_id == user_id).fetch()
 
             #if the user is not in the database after logging in.....
-            if not user_identification.get():
+            if not user_identification:
                 #...logs you in and redirects you to basic info where you can create your instance in the database
                 self.redirect('/student-or-scholar')
             #if the user is totally already in the database....
@@ -94,7 +94,19 @@ class MainHandler(webapp2.RequestHandler):
 class StudentHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/student-or-scholar.html')
-        self.response.write(template.render())
+        user = users.get_current_user()
+        if user:
+            user_id = user.user_id()
+            greeting = ('<a href="%s">Sign out!</a>.' %
+                    users.create_login_url('/'))
+        else:
+            greeting = ('<a id="login" href="%s">Sign in with your gmail account!</a>.' %
+                users.create_login_url('/'))
+
+        template_vars = {'login' : greeting}
+        self.response.write(template.render(template_vars))
+
+
     def post(self):
         userChoice = self.request.get('student-or-scholar-option')
         guppyuser = GuppyUser(email_user_id=users.get_current_user().user_id(), isStudent=userChoice)
@@ -107,7 +119,18 @@ class StudentHandler(webapp2.RequestHandler):
 class BasicInfoHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/basic-info.html')
-        self.response.write(template.render())
+
+        user = users.get_current_user()
+        if user:
+            user_id = user.user_id()
+            greeting = ('<a href="%s">Sign out!</a>.' %
+                    users.create_login_url('/'))
+        else:
+            greeting = ('<a id="login" href="%s">Sign in with your gmail account!</a>.' %
+                users.create_login_url('/'))
+
+        template_vars = {'login' : greeting}
+        self.response.write(template.render(template_vars))
 
     def post(self):
         basic_info = BasicInfo(
@@ -140,7 +163,17 @@ class BasicInfoHandler(webapp2.RequestHandler):
 class CompanyInfoHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('templates/companyinfo.html')
-        self.response.write(template.render())
+        user = users.get_current_user()
+        if user:
+            user_id = user.user_id()
+            greeting = ('<a href="%s">Sign out!</a>.' %
+                    users.create_login_url('/'))
+        else:
+            greeting = ('<a id="login" href="%s">Sign in with your gmail account!</a>.' %
+                users.create_login_url('/'))
+
+        template_vars = {'login' : greeting}
+        self.response.write(template.render(template_vars))
 
     def post(self):
         company_info = CompanyInfo(
@@ -200,11 +233,12 @@ class SupplementHandler(webapp2.RequestHandler):
     def post(self):
         user = users.get_current_user()
         user_id = user.user_id()
-        currentUser = GuppyUser.query().filter(GuppyUser.email_user_id == user_id).fetch()
+        currentUser = GuppyUser.query().filter(GuppyUser.email_user_id == user_id).fetch()[0]
+        currentUserFirstName =
 
         sender_address = (
             'Support <team@scholar-fish.appspotmail.com>')
-        subject = '{}\'s Application!'.format(currentUser[0].first_name)
+        subject = '{}\'s Application!'.format(currentUser.first_name)
 
         body = """Name: {}
         Age: {}
@@ -220,9 +254,7 @@ class SupplementHandler(webapp2.RequestHandler):
         receiver_address = company.email_address
         mail.send_mail(sender_address, receiver_address, subject, body)
 
-
-# Send the message via our own SMTP
-
+        self.redirect('/scholar-list')
 
 
 
