@@ -1,7 +1,16 @@
 @import url(https://fonts.googleapis.com/css?family=Poiret+One);
+.login {
+  text-align: right;
+  float: right;
+  font-size: 30px;
+}
+
+button{
+  margin-bottom: 10px;
+}
 
 a:visited{
-  color: black;
+  color: teal;
   font-family:'Poiret One', serif;
 
 }
