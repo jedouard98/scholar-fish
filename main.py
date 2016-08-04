@@ -22,6 +22,7 @@ class BasicInfo(ndb.Model):
     email_address = ndb.StringProperty(required="true")
     home_phone_number = ndb.StringProperty(required="true")
     cell_phone_number = ndb.StringProperty(required="true")
+    contact_method = ndb.StringProperty(required="true")
     religious_preference = ndb.StringProperty(required="true")
     us_armed_forces_status = ndb.StringProperty(required="true")
     race = ndb.StringProperty(required="true")
@@ -136,7 +137,6 @@ class BasicInfoHandler(webapp2.RequestHandler):
         basic_info = BasicInfo(
             first_name=self.request.get('first_name'),
             last_name=self.request.get('last_name'),
-
             birthday=self.request.get('birthday'),
             grade_level=self.request.get('grade_level'),
             high_school_grad=self.request.get('graduation_year'),
@@ -147,6 +147,7 @@ class BasicInfoHandler(webapp2.RequestHandler):
             email_address = self.request.get('email'),
             home_phone_number = self.request.get('homephone'),
             cell_phone_number =self.request.get('cellphone'),
+            contact_method=self.request.get('contactmethod')
             religious_preference = self.request.get('religion'),
             us_armed_forces_status = self.request.get('military'),
             race = self.request.get('race'),
@@ -258,13 +259,52 @@ class SupplementHandler(webapp2.RequestHandler):
 
         currentUserBasicInfoID = currentUserBasicInfoKey.id()
         basic_info = BasicInfo.get_by_id(int(currentUserBasicInfoID))
-        
+
         sender_address = (
             'Support <team@scholar-fish.appspotmail.com>')
         subject = '{}\'s Application!'.format(basic_info.first_name)
 
-        body = """Name:
-"""
+
+        body = """First Name: {}
+            Last Name: {}
+            Birthday: {}
+            Grade Level this Fall: {}
+            High School Graduation Year:{}
+            Student Address : {}
+            City: {}
+            State:{}
+            Zipcode: {}
+            Email Address: {}
+            Home Phone Number: {}
+            Cell Phone Number:{}
+            Preferred Method of Contact: {}
+            Religious Preference :{}
+            U.S. Armed Force Status: {}
+            Race: {}
+            Citizenship Status: {}
+            Resume: {}
+            Transcript: {}
+            Required Supplements: {}
+            Optional Supplments: {}
+""".format(basic_info.first_name,
+            basic_info.last_name,
+            basic_info.birthday,
+            basic_info.grade_level,
+            basic_info.high_school_grad,
+            basic_info.address,
+            basic_info.city,
+            basic_info.state,
+            basic_info.zip_code,
+            basic_info.email_address,
+            basic_info.home_phone_number,
+            basic_info.cell_phone_number,
+            basic_info.contact_method,
+            basic_info.religious_preference,
+            basic_info.us_armed_forces_status,
+            basic_info.race,
+            basic_info.citizenship,
+            basic_info.required_supplement,
+            basic_info.optional_supplement,)
 
         name = self.request.get('name')
         company = CompanyInfo.query().filter(CompanyInfo.company_name == name).fetch()[0]
