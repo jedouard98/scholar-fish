@@ -234,7 +234,6 @@ class SupplementHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         user_id = user.user_id()
         currentUser = GuppyUser.query().filter(GuppyUser.email_user_id == user_id).fetch()[0]
-        currentUserFirstName =
 
         sender_address = (
             'Support <team@scholar-fish.appspotmail.com>')
