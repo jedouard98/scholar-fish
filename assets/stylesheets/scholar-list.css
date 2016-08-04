@@ -1,11 +1,13 @@
 @import url(https://fonts.googleapis.com/css?family=Poiret+One);
 a:visited{
-  color: teal;
+  color: black;
   font-family:'Poiret One', serif;
+
 }
 a{
   color: teal;
   font-family:'Poiret One', serif;
+  text-decoration: none;
 }
 .header{
   color : white;
