@@ -1,12 +1,11 @@
 button{
   position: relative;
   right: 1px;
-  top:  100px;
+  bottom:  0px;
 }
 
-}
 .image-background{
-  background-image: url('/assets/images/scholarfish.jpg');
+  background-image: url('/assets/images/scholar.jpg');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   height: inherit;
