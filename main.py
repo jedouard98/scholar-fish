@@ -254,24 +254,21 @@ class SupplementHandler(webapp2.RequestHandler):
     def post(self):
         user = users.get_current_user()
         user_id = user.user_id()
-        currentUser = GuppyUser.query().filter(GuppyUser.email_user_id == user_id).fetch()[0]
+        currentUserBasicInfoKey = GuppyUser.query().filter(GuppyUser.email_user_id == user_id).fetch()[0].basic_info
 
+        currentUserBasicInfoID = currentUserBasicInfoKey.id()
+        basic_info = BasicInfo.get_by_id(int(currentUserBasicInfoID))
+        
         sender_address = (
             'Support <team@scholar-fish.appspotmail.com>')
-        subject = '{}\'s Application!'.format(currentUser.first_name)
+        subject = '{}\'s Application!'.format(basic_info.first_name)
 
-        body = """Name: {}
-        Age: {}
-        asdasd
-        asda
-        sda
-        sd
-
-""".format(currentUser[0].first_name)
+        body = """Name:
+"""
 
         name = self.request.get('name')
         company = CompanyInfo.query().filter(CompanyInfo.company_name == name).fetch()[0]
-        receiver_address = company.email_address
+        receiver_address = "jedouard98@gmail.com"
         mail.send_mail(sender_address, receiver_address, subject, body)
 
         self.redirect('/scholar-list')
