@@ -83,7 +83,7 @@ class MainHandler(webapp2.RequestHandler):
             else:
                 #changes the greeting on the homepage
                 greeting = ('<a href="%s">Sign out!</a>.' %
-                    users.create_login_url('/'))
+                    users.create_logout_url('/'))
         else:
             greeting = ('<a id="login" href="%s">Sign in with your gmail account!</a>.' %
                 users.create_login_url('/'))
@@ -265,7 +265,8 @@ class SupplementHandler(webapp2.RequestHandler):
         subject = '{}\'s Application!'.format(basic_info.first_name)
 
 
-        body = """First Name: {}
+        body = """
+            First Name: {}
             Last Name: {}
             Birthday: {}
             Grade Level this Fall: {}
