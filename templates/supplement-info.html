@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href="/assets/stylesheets/supplement-info.css">
   <title>ScholarFish - A Place to Swim through the Application Process! </title>
 </head>
 <body>
@@ -8,21 +9,8 @@
   <form method='post'>
   {% for question in listOfSupplements %}
   <p>{{question}}</p><textarea name={{question}} rows="4" cols="50"></textarea>
-  {% endfor %}
+  {% endfor %} <br>
   <button type="submit">Submit!</button>
-
-<style>
-@import url(https://fonts.googleapis.com/css?family=Poiret+One);
-
-h1{
-  text-align: center;
-  font-family: 'Poiret One', serif;
-  font-size: 50px;
-  color: #006666
-}
-
-
-</style>
 
 </form>
 </body>
