@@ -210,7 +210,18 @@ class ScholarListHandler(webapp2.RequestHandler):
         for scholarship in company_data:
             name = scholarship.company_name
             listOfScholarships.append(name)
-        template_list = {"listOfScholarships" : listOfScholarships}
+
+        user = users.get_current_user()
+        if user:
+            user_id = user.user_id()
+            greeting = ('<a href="%s">Sign out!</a>.' %
+                    users.create_login_url('/'))
+        else:
+            greeting = ('<a id="login" href="%s">Sign in with your gmail account!</a>.' %
+                users.create_login_url('/'))
+
+        template_list = {"listOfScholarships" : listOfScholarships, "login" : greeting}
+
         self.response.write(template.render(template_list))
 
 class SupplementHandler(webapp2.RequestHandler):
@@ -228,7 +239,17 @@ class SupplementHandler(webapp2.RequestHandler):
                 logging.info(sentence)
                 logging.info(stringOfQuestions)
                 listOfSupplements.append(newSentence)
-        template_list = {"listOfSupplements" : listOfSupplements}
+
+        user = users.get_current_user()
+        if user:
+            user_id = user.user_id()
+            greeting = ('<a href="%s">Sign out!</a>.' %
+                    users.create_login_url('/'))
+        else:
+            greeting = ('<a id="login" href="%s">Sign in with your gmail account!</a>.' %
+                users.create_login_url('/'))
+
+        template_list = {"listOfSupplements" : listOfSupplements, "login" : greeting}
         self.response.write(template.render(template_list))
     def post(self):
         user = users.get_current_user()
