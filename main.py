@@ -147,7 +147,7 @@ class BasicInfoHandler(webapp2.RequestHandler):
             email_address = self.request.get('email'),
             home_phone_number = self.request.get('homephone'),
             cell_phone_number =self.request.get('cellphone'),
-            contact_method=self.request.get('contactmethod')
+            contact_method=self.request.get('contactmethod'),
             religious_preference = self.request.get('religion'),
             us_armed_forces_status = self.request.get('military'),
             race = self.request.get('race'),
@@ -282,10 +282,6 @@ class SupplementHandler(webapp2.RequestHandler):
             U.S. Armed Force Status: {}
             Race: {}
             Citizenship Status: {}
-            Resume: {}
-            Transcript: {}
-            Required Supplements: {}
-            Optional Supplments: {}
 """.format(basic_info.first_name,
             basic_info.last_name,
             basic_info.birthday,
@@ -302,9 +298,7 @@ class SupplementHandler(webapp2.RequestHandler):
             basic_info.religious_preference,
             basic_info.us_armed_forces_status,
             basic_info.race,
-            basic_info.citizenship,
-            basic_info.required_supplement,
-            basic_info.optional_supplement,)
+            basic_info.citizenship)
 
         name = self.request.get('name')
         company = CompanyInfo.query().filter(CompanyInfo.company_name == name).fetch()[0]
