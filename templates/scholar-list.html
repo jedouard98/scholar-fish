@@ -7,7 +7,10 @@
 <body>
   <div class ="header">
     List of Scholarships!<div class=login><button type="submit" name="button">{{login}}</button></div>
+
   </div>
+
+  <h1> We suggest writing your answers in a separate sheet to avoid grammar errors and misspellings. </h1>
 
   {% for line in listOfScholarships %}
   <a href="/supplement-info?name={{line}}"><div><p>{{line}}</p></div></a>
