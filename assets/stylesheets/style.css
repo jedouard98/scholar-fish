@@ -6,10 +6,13 @@ button{
   display: block;
   word-wrap: nowrap;
   overflow: hidden;
+<<<<<<< HEAD
   width: auto;
   height: auto;
   font-weight: bolder;
   text-decoration: none;
+=======
+>>>>>>> 3c68d3548aba51daf25d691decbe29d9c25a56f6
 }
 
 body{
