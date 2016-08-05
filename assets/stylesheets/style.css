@@ -1,7 +1,11 @@
 button{
-  position: relative;
-  left: 1235px;
-  top:  10px;
+  position: absolute;
+  left: 80%;
+  top:  10%;
+  float: left;
+  display: block;
+  word-wrap: nowrap;
+  overflow: hidden;
 }
 
 body{
