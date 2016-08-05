@@ -1,7 +1,15 @@
 button{
   position: absolute;
-  left: 86%;
+  left: 80%;
   top:  10%;
+  float: left;
+  display: block;
+  word-wrap: nowrap;
+  overflow: hidden;
+  width: auto;
+  height: auto;
+  font-weight: bolder;
+  text-decoration: none;
 }
 
 body{
@@ -53,9 +61,11 @@ a:visited {
 }
 a{
   color: teal;
+  text-decoration: none; 
 }
 body, html{
   padding: 0;
   margin: 0;
   height: 100%;
 }
+p
